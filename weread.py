@@ -376,10 +376,12 @@ if __name__ == "__main__":
     parser.add_argument("weread_cookie")
     parser.add_argument("notion_token")
     parser.add_argument("database_id")
+    parser.add_argument("push_addr")
     options = parser.parse_args()
     weread_cookie = options.weread_cookie
     database_id = options.database_id
     notion_token = options.notion_token
+    push_addr = options.push_addr
     session = requests.Session()
     session.cookies = parse_cookie_string(weread_cookie)
     client = Client(
@@ -413,3 +415,4 @@ if __name__ == "__main__":
             results = add_children(id, children)
             if(len(grandchild)>0 and results!=None):
                 add_grandchild(grandchild, results)
+    requests.get(push_addr)
